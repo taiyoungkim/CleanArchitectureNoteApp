@@ -1,4 +1,4 @@
-package com.tycoding.cleanarchitecturenoteapp
+package com.tycoding.cleanarchitecturenoteapp.feature_note.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
