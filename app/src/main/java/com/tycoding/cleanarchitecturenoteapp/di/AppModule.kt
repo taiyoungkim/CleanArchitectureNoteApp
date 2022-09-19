@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.tycoding.cleanarchitecturenoteapp.feature_note.data.data_source.NoteDatabase
 import com.tycoding.cleanarchitecturenoteapp.feature_note.data.repository.NoteRepositoryImpl
 import com.tycoding.cleanarchitecturenoteapp.feature_note.domain.repository.NoteRepository
+import com.tycoding.cleanarchitecturenoteapp.feature_note.domain.use_case.AddNote
 import com.tycoding.cleanarchitecturenoteapp.feature_note.domain.use_case.DeleteNote
 import com.tycoding.cleanarchitecturenoteapp.feature_note.domain.use_case.GetNotes
 import com.tycoding.cleanarchitecturenoteapp.feature_note.domain.use_case.NoteUserCases
@@ -39,7 +40,8 @@ object AppModule {
     fun provideNoteUseCases(repository: NoteRepository): NoteUserCases {
         return NoteUserCases(
             getNotes = GetNotes(repository),
-            deleteNote = DeleteNote(repository)
+            deleteNote = DeleteNote(repository),
+            addNote = AddNote(repository)
         )
     }
 }
