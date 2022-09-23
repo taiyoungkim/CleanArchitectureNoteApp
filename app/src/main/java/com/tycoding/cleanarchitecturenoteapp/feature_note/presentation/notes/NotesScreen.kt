@@ -18,11 +18,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.tycoding.cleanarchitecturenoteapp.feature_note.presentation.notes.NotesEvent
 import com.tycoding.cleanarchitecturenoteapp.feature_note.presentation.notes.NotesViewModel
+import com.tycoding.cleanarchitecturenoteapp.feature_note.presentation.util.Screen
 import kotlinx.coroutines.launch
 
 @ExperimentalAnimationApi
 @Composable
-fun NoteScreen(
+fun NotesScreen(
     navController: NavController,
     viewModel: NotesViewModel = hiltViewModel()
 ) {
@@ -33,7 +34,7 @@ fun NoteScreen(
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(onClick = {
-
+                navController.navigate(Screen.AddEditNoteScreen.route)
             },
             backgroundColor = MaterialTheme.colors.primary
             ) {
@@ -90,7 +91,10 @@ fun NoteScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable {
-
+                                navController.navigate(
+                                    Screen.AddEditNoteScreen.route +
+                                            "?noteId=${note.id}&noteColor=${note.color}"
+                                )
                             },
                         onDeleteClick = {
                             viewModel.onEvent(NotesEvent.DeleteNote(note))
